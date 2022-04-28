@@ -1,0 +1,36 @@
+{"frames": {
+
+"back_rocks.png":
+{
+	"frame": {"x":1,"y":963,"w":1280,"h":770},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":770},
+	"sourceSize": {"w":1280,"h":770}
+},
+"bg_preloader.png":
+{
+	"frame": {"x":1,"y":1,"w":1280,"h":960},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":960},
+	"sourceSize": {"w":1280,"h":960}
+},
+"floor.png":
+{
+	"frame": {"x":1283,"y":1,"w":1280,"h":414},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":414},
+	"sourceSize": {"w":1280,"h":414}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "EnvironmentBackgrounds.png",
+	"format": "RGBA8888",
+	"size": {"w":1698,"h":1734},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:13d3c5157096421cb417b6a250b0ef31:dff08e3acec59984865e43e5e2af0abc:3bb5686c4d94e03756aa0430cecc559f$"
+}
+}

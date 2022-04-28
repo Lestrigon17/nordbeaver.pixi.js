@@ -1,0 +1,21 @@
+{"frames": {
+
+"rays.png":
+{
+	"frame": {"x":1,"y":1,"w":1641,"h":1640},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1641,"h":1640},
+	"sourceSize": {"w":1641,"h":1640}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "UIBackgrounds_0.png",
+	"format": "RGBA8888",
+	"size": {"w":1643,"h":1642},
+	"scale": "1",
+	"related_multi_packs": [ "UIBackgrounds_1.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:0e89eaee79355668aebe88a1134df658:eeab0707316f0699d073a1c913e5d13c:e6b42117b8f2a6e770fe794ead5417c0$"
+}
+}

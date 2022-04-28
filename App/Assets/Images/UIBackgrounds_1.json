@@ -1,0 +1,21 @@
+{"frames": {
+
+"info_plate_big.png":
+{
+	"frame": {"x":1,"y":1,"w":753,"h":923},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":753,"h":923},
+	"sourceSize": {"w":753,"h":923}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "UIBackgrounds_1.png",
+	"format": "RGBA8888",
+	"size": {"w":755,"h":925},
+	"scale": "1",
+	"related_multi_packs": [ "UIBackgrounds_0.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:0e89eaee79355668aebe88a1134df658:eeab0707316f0699d073a1c913e5d13c:e6b42117b8f2a6e770fe794ead5417c0$"
+}
+}

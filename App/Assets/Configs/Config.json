@@ -1,0 +1,8 @@
+{
+	"PIXI": {
+		"Application": {
+			"width": 900,
+			"height": 550
+		}
+	}
+}

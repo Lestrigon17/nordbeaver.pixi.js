@@ -1,0 +1,20 @@
+{"frames": {
+
+"mi_bunny_idle_03.png":
+{
+	"frame": {"x":1,"y":1,"w":410,"h":366},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":47,"y":66,"w":410,"h":366},
+	"sourceSize": {"w":500,"h":500}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Characters.png",
+	"format": "RGBA8888",
+	"size": {"w":412,"h":368},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:fd08a2fabcf7e80495046ca9636f3788:3ca95aed8b79998c6ddc9eafa51de46d:78f5cb85136f56011bdfdc1239f9a678$"
+}
+}

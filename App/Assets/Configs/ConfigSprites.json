@@ -1,0 +1,10 @@
+{
+	"Sheets": {
+		"Characters": {
+			"path": "./Assets/Images/Characters.json",
+			"sprites": {
+				"mi_bunny_idle_03": "mi_bunny_idle_03.png"
+			}
+		}
+	}
+}
