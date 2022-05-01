@@ -5,5 +5,5 @@ import "./App.imports";
 import Core from './Scripts/Core';
 import Scenes from './Scripts/Scenes';
 
-Core.PIXI.ApplicationController.Instantiate();
+Core.PIXIComponents.ApplicationController.Instantiate();
 Scenes.SceneManager.LoadScene(Scenes.SceneStart);

@@ -1,6 +1,5 @@
 
 import * as PIXI from 'pixi.js';
-
 export class ResourceLoader {
 	private static _cachedResources: string[] = [];
 	private static _loader = new PIXI.Loader();

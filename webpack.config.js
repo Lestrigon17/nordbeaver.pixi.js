@@ -6,10 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	mode: 'development',
 	devtool: 'inline-source-map',
-	entry: './App/App.ts',
+	entry: {
+		App: './App/App.ts'
+	},
 	output: {
 		path: path.resolve(__dirname, 'build'),
-		filename: 'bundle-[hash].js',
+		filename: '[name].bundle-[hash].js',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js'],

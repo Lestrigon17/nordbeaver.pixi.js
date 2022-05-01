@@ -2,8 +2,6 @@
 import * as PIXI from 'pixi.js';
 import { Config } from '../../Configs';
 import { BaseScene } from "../BaseScene";
-import { Logger } from '../../Logger';
-import { ApplicationController } from '../../Core/PIXI/ApplicationController';
 
 const { Application } = Config.Main.PIXI;
 const { Characters } = Config.Sprites.Sheets;

@@ -1,6 +1,4 @@
-import { ApplicationController } from "../Core/PIXI/ApplicationController";
 import { BaseScene } from "./BaseScene";
-// import * as PIXI from "../Core/PIXI";
 import Core from "../Core";
 
 export class SceneManager {
@@ -16,7 +14,7 @@ export class SceneManager {
 				}
 
 				this._currentScene = sceneInstance;
-				Core.PIXI.ApplicationController.instance.stage.addChild(sceneInstance);
+				Core.PIXIComponents.ApplicationController.instance.stage.addChild(sceneInstance);
 			})
 	}
 }
