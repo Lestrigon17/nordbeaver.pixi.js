@@ -3,9 +3,9 @@ import * as PIXI from 'pixi.js';
 import { Config } from '../../Configs';
 import { BaseScene } from "../BaseScene";
 import { Logger } from '../../Logger';
-import { SceneManager } from '../SceneManager';
+import { Manager } from '../Manager';
 import { SceneGame } from '../SceneGame/SceneGame';
-import Core from '../../Core';
+import { Core } from '../../Core';
 
 const { Application } = Config.Main.PIXI; 
 const { Characters } = Config.Sprites.Sheets;
@@ -17,7 +17,7 @@ export class SceneStart extends BaseScene {
 		this.ShowLogo();
 		this.UpdateLoop(0);
 
-		SceneManager.LoadScene(SceneGame);
+		Manager.LoadScene(SceneGame);
 	}
 
 	private ShowLogo(): void {

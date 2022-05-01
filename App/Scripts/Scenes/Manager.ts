@@ -1,7 +1,7 @@
+import { Core } from "../Core";
 import { BaseScene } from "./BaseScene";
-import Core from "../Core";
 
-export class SceneManager {
+export class Manager {
 	private static _currentScene: BaseScene;
 
 	public static LoadScene(scene: typeof BaseScene): void {
