@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
-import { Config } from '../Config';
-import { Logger } from '../Logger';
+import { Config } from '../../Configs';
+import { Logger } from '../../Logger';
 
 export class ApplicationController {
 	public static get instance(): PIXI.Application {
@@ -15,7 +15,7 @@ export class ApplicationController {
 			return;
 		}
 
-		this._instance = new PIXI.Application(Config.PIXI.Application);
+		this._instance = new PIXI.Application(Config.Main.PIXI.Application);
 		document.body.appendChild(this._instance.view);
 	}
 }

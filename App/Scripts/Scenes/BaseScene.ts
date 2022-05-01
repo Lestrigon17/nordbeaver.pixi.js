@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
-import { Config } from '../Config';
-const { Application } = Config.PIXI; 
+import { Config } from '../Configs';
+const { Application } = Config.Main.PIXI; 
 
 export class BaseScene extends PIXI.Graphics {
 	constructor(...args: ConstructorParameters<typeof PIXI.Container>) {

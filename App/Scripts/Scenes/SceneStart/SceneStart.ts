@@ -1,15 +1,14 @@
 
 import * as PIXI from 'pixi.js';
-import { Config } from '../../Config';
+import { Config } from '../../Configs';
 import { BaseScene } from "../BaseScene";
-import * as Core from "../../Core/Core";
-import { ConfigSprites } from '../../ConfigSprites';
 import { Logger } from '../../Logger';
 import { SceneManager } from '../SceneManager';
 import { SceneGame } from '../SceneGame/SceneGame';
+import Core from '../../Core';
 
-const { Application } = Config.PIXI; 
-const { Characters } = ConfigSprites.Sheets;
+const { Application } = Config.Main.PIXI; 
+const { Characters } = Config.Sprites.Sheets;
 
 export class SceneStart extends BaseScene {
 	private _logo?: PIXI.Sprite;
