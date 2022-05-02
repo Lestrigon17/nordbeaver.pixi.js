@@ -1,3 +1,5 @@
+/// <reference path="index.d.ts" />
+
 import { BaseScene } from "./BaseScene";
 import { Manager } from "./Manager";
 import { SceneGame } from "./SceneGame/SceneGame";

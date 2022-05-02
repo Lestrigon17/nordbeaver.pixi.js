@@ -29,10 +29,12 @@ export class ScreenStart extends BaseScreen {
 		
 		console.log(spriteSheet)
 
-		this.background = new PIXI.Sprite( spriteSheet.textures[UIBackgrounds.sprites.background] );
-		this.background.setParent(this);
-		this.background.anchor.set(0.5);
-		this.background.scale.set(0.6);
+		const background = new PIXI.Sprite( spriteSheet.textures[UIBackgrounds.sprites.background] );
+		background.setParent(this);
+		background.anchor.set(0.5);
+		background.scale.set(0.6);
+
+		this.background = background;
 	}
 
 	private CreateView(spriteSheet: PIXI.LoaderResource): void {
@@ -47,6 +49,18 @@ export class ScreenStart extends BaseScreen {
 		this.CreateButtonMILogin(spriteSheet);
 		this.CreateFakeName(spriteSheet);
 		this.CreateRecord(spriteSheet);
+	}
+
+	private CreateButtonClose(spriteSheet: PIXI.LoaderResource): void {		
+		const button = new Core.PIXIComponents.ButtonSprite();
+		button.setParent(this);
+		button.spriteConfig = UISprites.sprites.buttonPlay;
+		button.spriteSheet = spriteSheet;
+		button.zIndex = 2;
+		button.scale.set(this.background.scale.x);
+		button.position.set(button.width / 2, this.background.height / 2 - 100);
+		
+		this.buttonClose = button;
 	}
 
 	private CreateHeader(spriteSheet: PIXI.LoaderResource): void {
@@ -67,19 +81,6 @@ export class ScreenStart extends BaseScreen {
 		title.position.set(-title.width / 2, -this.background.height / 2 + 5);
 		
 		this.titleLabel = title;
-	}
-
-	private CreateButtonClose(spriteSheet: PIXI.LoaderResource): void {		
-		const button = new Core.PIXIComponents.ButtonSprite();
-		button.setParent(this);
-		button.spriteConfig = UISprites.sprites.buttonPlay;
-		button.spriteSheet = spriteSheet;
-		button.zIndex = 2;
-		button.scale.set(this.background.scale.x);
-		button.position.set(button.width / 2, this.background.height / 2 - 100);
-		
-
-		this.buttonClose = button;
 	}
 
 	private CreateButtonLeaderboard(spriteSheet: PIXI.LoaderResource): void {		
@@ -130,6 +131,7 @@ export class ScreenStart extends BaseScreen {
 			fill: "#06eb62", 
 			fontFamily: "Krabuler"
 		}
+		
 		const title = new PIXI.Text(Config.Phrases.currentRecord);
 		title.setParent(this);
 		title.pivot.set(0.5);

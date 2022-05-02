@@ -1,7 +1,8 @@
-/// <reference path="./index.d.ts" />
+/// <reference path="index.d.ts" />
 
 import { BaseScreen } from "./BaseScreen";
 import { Manager } from "./Manager";
+import { ScreenEndGame } from "./ScreenEndGame/ScreenEndGame";
 import { ScreenStart } from "./ScreenStart/ScreenStart";
 
 export class Screens {
@@ -9,6 +10,7 @@ export class Screens {
 	public static Manager 	 = Manager;
 
 	public static List = {
-		Start: ScreenStart
+		Start: ScreenStart,
+		EndGame: ScreenEndGame
 	}
 }

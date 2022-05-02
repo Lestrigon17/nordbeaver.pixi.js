@@ -15,4 +15,16 @@ export namespace Utils {
 			}
 		}
 	}
+
+	export class Number {
+		/***
+		 * @param min inclusive
+		 * @param max exclusive 
+		 */
+		public static RandomInteger(min: number, max: number): number {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min) + min);
+		}
+	}
 }

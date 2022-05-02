@@ -27,6 +27,7 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		Logger.Log("Screen opened");
 
 		this.EnableButtonClose();
+		this.renderable = true;
 		return this.OnOpen();
 	}
 
@@ -36,7 +37,11 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		this.DisableButtonClose();
 		this.OnClose();
 
-		this.destroy();
+		this.renderable = false;
+	}
+
+	public FirstInitialize(): Promise<void> {
+		return this.OnFirstInitialize()
 	}
 
 	protected OnLoad(): void {
@@ -48,6 +53,9 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 	protected OnClose(): void { }
 	protected OnOpen():  Promise<void> {	
 		return Promise.resolve(); 
+	}
+	protected OnFirstInitialize(): Promise<void> {
+		return Promise.resolve();
 	}
 
 	private HandleButtonClose(event: Types.Core.PIXIComponents.EEventType): void {

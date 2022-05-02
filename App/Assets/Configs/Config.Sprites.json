@@ -24,8 +24,16 @@
 					"hover": "login_button_hover.png",
 					"press": "login_button_press.png"
 				},
+				"buttonOk": {
+					"active": "ok_button_active.png",
+					"hover": "ok_button_hover.png",
+					"press": "ok_button_press.png"
+				},
 				"screenTitleBackground": "header_info_plate.png",
-				"userNameBar": "user_name_bar.png"
+				"userNameBar": "user_name_bar.png",
+				"scoreCoinsIcon": "collect_coin_icon.png",
+				"ScoreDistanceIcon": "collect_distance_icon.png",
+				"star": "star.png"
 			}
 		},
 		"UIBackgrounds_1": {
