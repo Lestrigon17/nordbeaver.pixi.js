@@ -1,8 +1,8 @@
 {
 	"PIXI": {
 		"Application": {
-			"width": 900,
-			"height": 550
+			"width": 1280,
+			"height": 640
 		}
 	}
 }

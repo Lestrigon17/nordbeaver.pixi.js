@@ -5,6 +5,28 @@
 			"sprites": {
 				"mi_bunny_idle_03": "mi_bunny_idle_03.png"
 			}
+		},
+		"UI": {
+			"path": "./Assets/Images/UI.json",
+			"sprites": {
+				"buttonPlay": {
+					"active": "play_button_active.png",
+					"hover": "play_button_hover.png",
+					"press": "play_button_press.png"
+				}
+			}
+		},
+		"UIBackgrounds_1": {
+			"path": "./Assets/Images/UIBackgrounds_1.json",
+			"sprites": {
+				"background": "info_plate_big.png"
+			}
+		},
+		"UIBackgrounds_0": {
+			"path": "./Assets/Images/UIBackgrounds_0.json",
+			"sprites": {
+				"rays": "rays.png"
+			}
 		}
 	}
 }

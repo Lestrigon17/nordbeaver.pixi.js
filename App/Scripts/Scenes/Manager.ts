@@ -14,7 +14,8 @@ export class Manager {
 				}
 
 				this._currentScene = sceneInstance;
-				Core.PIXIComponents.ApplicationController.instance.stage.addChild(sceneInstance);
+				this._currentScene.zIndex = 0;
+				Core.PIXIComponents.AppController.instance.stage.addChild(sceneInstance);
 			})
 	}
 }

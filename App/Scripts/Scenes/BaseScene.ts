@@ -14,9 +14,13 @@ export class BaseScene extends PIXI.Graphics {
 	}
 
 	public BeforeLoadScene(): Promise<void> {
-		return this.OnBeforeLoadScene();
+		return (
+			this.OnBeforeLoadScene()
+				.then(this.OnStart.bind(this))
+		)
 	}
 	
 	protected OnBeforeLoadScene(): Promise<void> { return Promise.resolve(); }
 	protected OnLoad(): void {}
+	protected OnStart(): void {}
 }

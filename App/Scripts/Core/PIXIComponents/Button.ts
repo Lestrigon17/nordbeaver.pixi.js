@@ -2,8 +2,9 @@ import { stat } from "fs";
 import * as PIXI from "pixi.js";
 import { Logger } from "../../Logger";
 import { EventHandler } from "../EventHandler";
+import { Base } from "./Base";
 
-enum EEventType {
+export enum EEventType {
 	PointerDown 	  = 'pointerdown',
 	PointerUp 		  = 'pointerup',
 	PointerUpOutSide  = 'pointerupoutside',
@@ -12,7 +13,7 @@ enum EEventType {
 	InteractiveChange = 'interactivechange'
 }
 
-export class Button extends PIXI.Container {
+export class Button extends Base {
 	public static EEventType = EEventType
 
 	@EventHandler.Instantiate()
@@ -25,38 +26,28 @@ export class Button extends PIXI.Container {
 	}
 
 	private _isInteractive: boolean = true;
-
+	
 	constructor(...args: ConstructorParameters<typeof PIXI.Container>) {
 		super(...args);
 
-		this.MakeButton();
+		this.interactive = this._isInteractive;
+		this.buttonMode = true;
 	}
 
-	public SetIsEventEnabled(event: EEventType, state: boolean): this {
-		const boundFunction = state ? this.on : this.off;
+	protected OnLoad(): void {
+		this.on(EEventType.PointerDown, this.OnButtonDown, this);
+		this.on(EEventType.PointerUp, this.OnButtonUp, this);
+		this.on(EEventType.PointerUpOutSide, this.OnButtonUpOutSide, this);
+		this.on(EEventType.PointerOver, this.OnButtonOver, this);
+		this.on(EEventType.PointerOut, this.OnButtonOut, this);
+	}
 
-		switch(event) {
-			case Button.EEventType.PointerDown:
-				boundFunction(event, this.OnButtonDown, this);
-				break;
-			case Button.EEventType.PointerUp:
-				boundFunction(event, this.OnButtonUp, this);
-				break;
-			case Button.EEventType.PointerUpOutSide:
-				boundFunction(event, this.OnButtonUpOutSide, this);
-				break;
-			case Button.EEventType.PointerOver:
-				boundFunction(event, this.OnButtonOver, this);
-				break;
-			case Button.EEventType.PointerOut:
-				boundFunction(event, this.OnButtonOut, this);
-				break;
-
-			default:
-				Logger.LogError("UnknownEvent!");
-		}
-
-		return this;
+	protected OnDestroy(): void {
+		this.off(EEventType.PointerDown, this.OnButtonDown, this);
+		this.off(EEventType.PointerUp, this.OnButtonUp, this);
+		this.off(EEventType.PointerUpOutSide, this.OnButtonUpOutSide, this);
+		this.off(EEventType.PointerOver, this.OnButtonOver, this);
+		this.off(EEventType.PointerOut, this.OnButtonOut, this);
 	}
 
 	private OnButtonDown(): void {
@@ -73,10 +64,5 @@ export class Button extends PIXI.Container {
 	}
 	private OnButtonOut(): void {
 		this.OnButtonEvent.Invoke(Button.EEventType.PointerOut);
-	}
-
-	private MakeButton(): void {
-		this.interactive = this._isInteractive;
-		this.buttonMode = true;
 	}
 }

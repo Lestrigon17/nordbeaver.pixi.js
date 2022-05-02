@@ -13,7 +13,18 @@ const { Characters } = Config.Sprites.Sheets;
 export class SceneStart extends BaseScene {
 	private _logo?: PIXI.Sprite;
 
-	protected OnLoad(): void {
+	private _resourceList: string[] = [
+		Characters.path
+	]
+
+	protected OnBeforeLoadScene(): Promise<void> {
+		return new Promise((resolve, reject) => {
+			Core.ResourceLoader.GetList(this._resourceList)
+				.then(() => resolve());
+		})
+	}
+
+	protected OnStart(): void {
 		this.ShowLogo();
 		this.UpdateLoop(0);
 
