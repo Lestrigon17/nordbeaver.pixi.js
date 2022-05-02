@@ -13,7 +13,19 @@
 					"active": "play_button_active.png",
 					"hover": "play_button_hover.png",
 					"press": "play_button_press.png"
-				}
+				},
+				"buttonLeaderboard": {
+					"active": "leadboard_button_active.png",
+					"hover": "leadboard_button_hover.png",
+					"press": "leadboard_button_press.png"
+				},
+				"buttonMILogin": {
+					"active": "login_button_active.png",
+					"hover": "login_button_hover.png",
+					"press": "login_button_press.png"
+				},
+				"screenTitleBackground": "header_info_plate.png",
+				"userNameBar": "user_name_bar.png"
 			}
 		},
 		"UIBackgrounds_1": {

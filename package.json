@@ -11,6 +11,7 @@
   "author": "lestrign17",
   "license": "ISC",
   "devDependencies": {
+    "@types/fontfaceobserver": "^2.1.0",
     "@types/node": "^17.0.29",
     "@types/pixi.js": "^5.0.0",
     "clean-webpack-plugin": "^4.0.0",
@@ -24,5 +25,9 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "@pixi/sound": "^4.2.0",
+    "fontfaceobserver": "^2.1.0"
   }
 }

@@ -1,4 +1,4 @@
-
+import FontFaceObserver from 'fontfaceobserver';
 import * as PIXI from 'pixi.js';
 import { Config } from '../../Configs';
 import { BaseScene } from "../BaseScene";
@@ -28,7 +28,15 @@ export class SceneStart extends BaseScene {
 		this.ShowLogo();
 		this.UpdateLoop(0);
 
-		Manager.LoadScene(SceneGame);
+		// Load sounds
+		Core.SoundPlayer.Init()
+			.then(() => {
+				let font = new FontFaceObserver('Krabuler', {});
+				return font.load();
+			})
+			.then(() => {
+				Manager.LoadScene(SceneGame);
+			})
 	}
 
 	private ShowLogo(): void {

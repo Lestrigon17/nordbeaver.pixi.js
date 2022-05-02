@@ -19,6 +19,7 @@ export class AppController {
 			return;
 		}
 
+
 		this._instance = new PIXI.Application(Config.Main.PIXI.Application);
 		document.body.appendChild(this._instance.view);
 

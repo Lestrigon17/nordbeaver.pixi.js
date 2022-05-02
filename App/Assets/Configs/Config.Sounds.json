@@ -1,0 +1,5 @@
+{
+	"AddCoins": "./Assets/Sounds/AddCoins.mp3",
+	"ButtonPress": "./Assets/Sounds/ButtonPress.mp3",
+	"Lose": "./Assets/Sounds/Lose.mp3"
+}

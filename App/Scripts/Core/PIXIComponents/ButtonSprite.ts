@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import { SoundPlayer } from "../SoundPlayer";
 import { Button, EEventType } from "./Button";
 
 
@@ -37,9 +38,19 @@ export class ButtonSprite extends Button {
 		this.OnButtonEvent.Subscribe(this.OnPointerEvent, this);
 	}
 
-	protected OnPointerEvent(event: EEventType): void {
-		if (!this._spriteSheet || !this._spriteSheet.textures) return;
+	protected OnDestroy(): void {
+		super.OnDestroy()
+		this.OnButtonEvent.Unsubscribe(this.OnPointerEvent, this);
+	}
 
+	protected OnPointerEvent(event: EEventType): void {
+		if (event === Button.EEventType.PointerUp) {
+			
+			// todo: Передалть на enum генерируемый из конфига
+			SoundPlayer.PlaySound("ButtonPress");
+		}
+
+		if (!this._spriteSheet || !this._spriteSheet.textures) return;
 
 		switch(event) {
 			case Button.EEventType.PointerOver:
