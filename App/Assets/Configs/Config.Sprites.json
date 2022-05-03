@@ -36,6 +36,71 @@
 				"star": "star.png"
 			}
 		},
+		"Enviroment": {
+			"path": "./Assets/Images/Environment.json",
+			"sprites": {
+				"airship": "airship.png",
+				"balloons": {
+					"blue": "balloon_blue.png",
+					"red": "ballon_red.png"
+				},
+				"backlayer": {
+					"gradient": "bg_gradient.png",
+					"sun": "bg_sun.png"
+				},
+				"checkPoint": "check_point.png",
+				"clouds": {
+					"1": "cloud_1.png",
+					"2": "cloud_2.png"
+				},
+				"coin": "coin.png",
+				"foreground": {
+					"directionPlate": "element_1.png",
+					"pillar": "element_2.png",
+					"fense": "fore_fence.png"
+				},
+				"trees": {
+					"1": "tree_1.png",
+					"2": "tree_2.png"
+				},
+				"stopper": {
+					"idle": "stopper_idle.png",
+					"crush": "stopper_crush.png"
+				},
+				"jumper": "jumper.png",
+				"building": {
+					"walls": {
+						"1": "tail_wall_1.png",
+						"2": "tail_wall_7.png"
+					},
+					"windows": {
+						"1": "tail_wall_2.png",
+						"2": "tail_wall_3.png"
+					},
+					"baseToWall": "tail_wall_4.png",
+					"basements": {
+						"1": "tail_wall_5",
+						"2": "tail_wall_6"
+					},
+					"roofs": {
+						"1": "tail_roof_1.png",
+						"2": "tail_roof_2.png"
+					},
+					"sides": {
+						"left": "tail_added_side_1.png",
+						"right": "tile_side_obj_1"
+					}
+				}
+			}
+		},
+		"EnviromentBackgrounds": {
+			"path": "./Assets/Images/EnvironmentBackgrounds.json",
+			"sprites": {
+				"rocks": "back_rocks.png",
+				"preloader": "bg_preloader.png",
+				"platform": "floor.png"
+			}
+		},
 		"UIBackgrounds_1": {
 			"path": "./Assets/Images/UIBackgrounds_1.json",
 			"sprites": {

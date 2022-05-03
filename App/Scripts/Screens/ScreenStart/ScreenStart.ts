@@ -1,6 +1,8 @@
 import * as PIXI from "pixi.js";
+import { Screens } from "..";
 import { Config } from "../../Configs";
 import { Core } from "../../Core";
+import { Game } from "../../Game";
 import { Logger } from "../../Logger";
 import { BaseScreen } from "../BaseScreen";
 
@@ -9,6 +11,7 @@ const { UI: UISprites, UIBackgrounds_1: UIBackgrounds } = Config.Sprites.Sheets
 export class ScreenStart extends BaseScreen {
 	public background!: PIXI.Sprite;
 	public titleLabel?: PIXI.Text;
+	public buttonLeaderboard?: Types.Core.PIXIComponents.ButtonSprite;
 
 	protected OnLoadScreen(): void {
 		this.sortableChildren = true;
@@ -18,7 +21,39 @@ export class ScreenStart extends BaseScreen {
 				this.CreateBackground(res);
 				return Core.ResourceLoader.Get(UISprites.path);
 			})
-			.then(this.CreateView.bind(this));
+			.then((res) => {
+				this.CreateView(res);
+				this.SubscribeEvents();
+			});
+	}
+
+	private SubscribeEvents(): void {
+		if (this.buttonLeaderboard) {
+			this.buttonLeaderboard.OnButtonEvent.Subscribe(this.HandleButtonLeaderboard, this);
+		}
+	}
+
+	protected OnDestroy(): void {
+		if (this.buttonLeaderboard) {
+			this.buttonLeaderboard.OnButtonEvent.Unsubscribe(this.HandleButtonLeaderboard, this);
+		}
+
+		if (this.buttonClose) {
+			this.buttonClose.OnButtonEvent.Unsubscribe(this.HandleButtonStart, this);
+		}
+	}
+
+	private HandleButtonLeaderboard(ev: Types.Core.PIXIComponents.EEventType): void {
+		if (ev !== Core.PIXIComponents.ButtonSprite.EEventType.PointerUp) return;
+
+		type TScreen = Types.Screens.List.EndGame;
+		const screenData = {
+			prevScreen: this
+		}
+		Screens.Manager.OpenScreen<TScreen>(Screens.List.EndGame, screenData)
+			.then(screen => {
+				screen.SetStats(10, 25, true);
+			})
 	}
 
 	private CreateBackground(spriteSheet: PIXI.LoaderResource): void {
@@ -27,8 +62,6 @@ export class ScreenStart extends BaseScreen {
 			return;
 		}
 		
-		console.log(spriteSheet)
-
 		const background = new PIXI.Sprite( spriteSheet.textures[UIBackgrounds.sprites.background] );
 		background.setParent(this);
 		background.anchor.set(0.5);
@@ -43,7 +76,7 @@ export class ScreenStart extends BaseScreen {
 			return;
 		}
 
-		this.CreateButtonClose(spriteSheet);
+		this.CreateButtonStart(spriteSheet);
 		this.CreateHeader(spriteSheet);
 		this.CreateButtonLeaderboard(spriteSheet);
 		this.CreateButtonMILogin(spriteSheet);
@@ -51,7 +84,7 @@ export class ScreenStart extends BaseScreen {
 		this.CreateRecord(spriteSheet);
 	}
 
-	private CreateButtonClose(spriteSheet: PIXI.LoaderResource): void {		
+	private CreateButtonStart(spriteSheet: PIXI.LoaderResource): void {		
 		const button = new Core.PIXIComponents.ButtonSprite();
 		button.setParent(this);
 		button.spriteConfig = UISprites.sprites.buttonPlay;
@@ -60,6 +93,8 @@ export class ScreenStart extends BaseScreen {
 		button.scale.set(this.background.scale.x);
 		button.position.set(button.width / 2, this.background.height / 2 - 100);
 		
+		button.OnButtonEvent.Subscribe(this.HandleButtonStart, this);
+
 		this.buttonClose = button;
 	}
 
@@ -91,6 +126,8 @@ export class ScreenStart extends BaseScreen {
 		button.zIndex = 3;
 		button.scale.set(this.background.scale.x);
 		button.position.set(-button.width / 2, this.background.height / 2 - 100);
+
+		this.buttonLeaderboard = button;
 	}
 
 	private CreateButtonMILogin(spriteSheet: PIXI.LoaderResource): void {		
@@ -147,5 +184,10 @@ export class ScreenStart extends BaseScreen {
 		value.style.fontSize = "74px";
 		value.style = {...value.style, ...style};
 		value.position.set(-value.width / 2, -this.background.height / 2 + 115);
+	}
+
+	private HandleButtonStart(ev: Types.Core.PIXIComponents.EEventType): void {
+		if (ev !== Core.PIXIComponents.Button.EEventType.PointerUp) return;
+		// Game.Manager.LoadGame();
 	}
 }

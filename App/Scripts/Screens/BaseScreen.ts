@@ -7,7 +7,14 @@ const { Button } = Core.PIXIComponents;
 const { Application } = Config.Main.PIXI; 
 
 type TButton = Nullable<Types.Core.PIXIComponents.Button>;
+enum EScreenState {
+	Closed,
+	Opened
+}
 export class BaseScreen extends Core.PIXIComponents.Base {
+	@Core.EventHandler.Instantiate()
+	public HandleClose!: Types.Core.EventHandler
+
 	protected set buttonClose(button: TButton) {
 		if (this._buttonClose && this._buttonClose !== button) {
 			this.DisableButtonClose();
@@ -28,6 +35,8 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 
 		this.EnableButtonClose();
 		this.renderable = true;
+		this.position.y = Config.Main.PIXI.Application.height / 2;
+		this.SetPositionState(EScreenState.Opened);
 		return this.OnOpen();
 	}
 
@@ -38,14 +47,14 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		this.OnClose();
 
 		this.renderable = false;
+		this.SetPositionState(EScreenState.Closed);
 	}
 
 	public FirstInitialize(): Promise<void> {
 		return this.OnFirstInitialize()
 	}
-
+	
 	protected OnLoad(): void {
-		this.position.set(Application.width / 2, Application.height / 2);
 		this.OnLoadScreen();
 	}
 
@@ -58,10 +67,19 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		return Promise.resolve();
 	}
 
+	private SetPositionState(state: EScreenState): void {
+		if (state === EScreenState.Closed) {
+			this.position.set(Application.width / 2, Application.height * 2);
+		} else {
+			this.position.set(Application.width / 2, Application.height / 2);
+		}
+	}
+
 	private HandleButtonClose(event: Types.Core.PIXIComponents.EEventType): void {
 		if (event !== Button.EEventType.PointerUp) return;
 		
 		this.Close();
+		this.HandleClose.Invoke();
 	}
 
 	private EnableButtonClose(): void {

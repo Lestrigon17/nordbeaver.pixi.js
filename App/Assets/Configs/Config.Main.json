@@ -3,6 +3,9 @@
 		"Application": {
 			"width": 1280,
 			"height": 640
+		},
+		"Game": {
+			"platformWidth": 1280
 		}
 	}
 }

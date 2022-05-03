@@ -14,10 +14,11 @@ export class BaseScene extends PIXI.Graphics {
 	}
 
 	public BeforeLoadScene(): Promise<void> {
-		return (
-			this.OnBeforeLoadScene()
-				.then(this.OnStart.bind(this))
-		)
+		return this.OnBeforeLoadScene()
+	}
+
+	public Start(): void {
+		this.OnStart();
 	}
 	
 	protected OnBeforeLoadScene(): Promise<void> { return Promise.resolve(); }
