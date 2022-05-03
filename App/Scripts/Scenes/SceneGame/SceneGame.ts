@@ -44,10 +44,8 @@ export class SceneGame extends BaseScene {
 		// this.UpdateLoop(0);
 
 		// Screens.Manager.OpenScreen( Screens.List.Start );
-		Screens.Manager.OpenScreen<Types.Screens.List.EndGame>( Screens.List.EndGame )
-			.then(screen => {
-				screen.SetStats(10, 25, true);
-			})
+		Game.Manager.LoadGame(); 
+		Screens.Manager.OpenScreen( Screens.List.Start );
 	}
 
 	private UpdateLoop(dt: number): void {
