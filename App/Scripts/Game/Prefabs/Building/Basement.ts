@@ -5,19 +5,25 @@ import { BaseToWall } from "./BaseToWall";
 import { SideLeft } from "./SideLeft";
 import { SideRight } from "./SideRight";
 import { Walls } from "./Walls";
+import { Windows } from "./Windows";
 
 const { Enviroment} = Config.Sprites.Sheets;
 const { basements } = Enviroment.sprites.building;
 export class Basement extends Base {
+	public static allowHeight: number = 2;
+	public get allowHeight(): number {
+		return Walls.allowHeight;
+	}
+
 	private _sprites: string[] = [
 		basements[1],
 		basements[2]
 	]
 
 	public allowConstrains = {
-		right: [Basement, BaseToWall, SideRight],
+		right: [Basement, SideRight],
 		left: [SideLeft],
-		up: [BaseToWall]
+		up: [BaseToWall, Basement, Walls, Windows]
 	}
 
 	protected OnLoad(): void {

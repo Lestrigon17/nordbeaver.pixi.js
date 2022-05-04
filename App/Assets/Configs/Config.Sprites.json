@@ -79,8 +79,8 @@
 					},
 					"baseToWall": "tail_wall_4.png",
 					"basements": {
-						"1": "tail_wall_5",
-						"2": "tail_wall_6"
+						"1": "tail_wall_5.png",
+						"2": "tail_wall_6.png"
 					},
 					"roofs": {
 						"1": "tail_roof_1.png",
@@ -88,7 +88,7 @@
 					},
 					"sides": {
 						"left": "tail_added_side_1.png",
-						"right": "tile_side_obj_1"
+						"right": "tail_side_obj_1.png"
 					}
 				}
 			}

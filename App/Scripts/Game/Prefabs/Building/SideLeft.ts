@@ -5,7 +5,10 @@ import { Base } from "./Base";
 const { Enviroment} = Config.Sprites.Sheets;
 const { sides } = Enviroment.sprites.building;
 export class SideLeft extends Base {
-	public allowHeight: number = 0;
+	public static allowHeight: number = 1;
+	public get allowHeight(): number {
+		return SideLeft.allowHeight;
+	}
 
 	private _sprites: string[] = [
 		sides.left

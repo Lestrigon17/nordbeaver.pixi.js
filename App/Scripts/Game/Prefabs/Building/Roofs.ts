@@ -5,6 +5,8 @@ import { Base } from "./Base";
 const { Enviroment} = Config.Sprites.Sheets;
 const { roofs } = Enviroment.sprites.building;
 export class Roofs extends Base {
+	public static allowHeight: number = 999;
+	
 	private _sprites: string[] = [
 		roofs[1],
 		roofs[2]

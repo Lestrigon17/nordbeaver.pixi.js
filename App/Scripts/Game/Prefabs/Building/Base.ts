@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { Core } from "../../../Core"
 
-type TContstrains = {
+export type TContstrains = {
 	up?: typeof Base[],
 	down?: typeof Base[],
 	left?: typeof Base[],
@@ -9,10 +9,22 @@ type TContstrains = {
 }
 
 export class Base extends Core.PIXIComponents.Base {
+	public static allowHeight: number = 999;
+	public get allowHeight(): number {
+		return Base.allowHeight;
+	}
+
 	public sprite!: PIXI.Sprite;
-	public sizeX: number = 50;
-	public sizeY: number = 50;
-	public allowHeight: number = -1;
+	
+	public size: PIXI.ISize = {
+		width: 75,
+		height: 75
+	}
+
+	public matrixPoint: PIXI.IPointData = {
+		x: 0,
+		y: 0
+	}
 
 	public allowConstrains: TContstrains = {};
 
@@ -23,10 +35,10 @@ export class Base extends Core.PIXIComponents.Base {
 		if (this.spriteTexture) {
 			sprite.texture = this.spriteTexture;
 		}
-		sprite.width = this.sizeX;
-		sprite.height = this.sizeY;
+		sprite.width = this.size.width;
+		sprite.height = this.size.height;
 		sprite.setParent(this);
-		sprite.anchor.set(0.5);
+		sprite.anchor.set(0, 1);
 
 		this.sprite = sprite;
 	}

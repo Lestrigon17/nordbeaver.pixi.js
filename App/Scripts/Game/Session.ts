@@ -14,6 +14,7 @@ export class Session {
 	private _speedContainer!: PIXI.Container;
 	private _platformSpeed: number = 0;
 	private _platformStorage: Platform[] = [];
+	private _maxSpeed: number = 7;
 
 	constructor(parent: PIXI.Container) {
 		const masterContainer = new PIXI.Container();
@@ -34,10 +35,10 @@ export class Session {
 		requestAnimationFrame(this.OnUpdate.bind(this));
 		this.CheckPlatforms();
 
-		this._masterContainer.angle = 5 / 100 * this._platformSpeed;
+		this._masterContainer.angle = 5 / this._maxSpeed * this._platformSpeed;
 		this._speedContainer.position.x -= this._platformSpeed;
 
-		// this._platformSpeed = Core.Utils.Number.Lerp(this._platformSpeed, 100, 0.01);
+		this._platformSpeed = Core.Utils.Number.Lerp(this._platformSpeed, this._maxSpeed, 0.01);
 	}
 
 	private InstantiateStartPlatform(): void {

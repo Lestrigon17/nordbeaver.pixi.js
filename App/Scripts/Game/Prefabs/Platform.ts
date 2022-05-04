@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { Config } from '../../Configs';
 import { Core } from "../../Core";
 import { Logger } from '../../Logger';
+import { Builder } from './Builder';
 
 const { Enviroment, EnviromentBackgrounds} = Config.Sprites.Sheets;
 
@@ -14,6 +15,12 @@ export class Platform extends Core.PIXIComponents.Base {
 	private _treesTexture: string[] = [
 		Enviroment.sprites.trees[1],
 		Enviroment.sprites.trees[2]
+	]
+
+	private _foregroundTextures: string[] = [
+		Enviroment.sprites.checkPoint,
+		Enviroment.sprites.foreground.pillar,
+		Enviroment.sprites.foreground.directionPlate,
 	]
 
 	protected OnLoad(): void {
@@ -40,6 +47,15 @@ export class Platform extends Core.PIXIComponents.Base {
 
 		this.CreateFloor();
 		this.SpawnBackground(spriteSheet);
+		this.CreateBuilding();
+	}
+
+	private CreateBuilding(): void {
+		const building = Builder.CreateBuilding();
+		building.setParent(this.buldingLayer);
+		const position = Core.Utils.Number.RandomInteger(100, Config.Main.PIXI.Game.platformWidth);
+		building.position.set(75, 5); 
+
 	}
 
 	private async CreateFloor(): Promise<void> {
@@ -53,22 +69,49 @@ export class Platform extends Core.PIXIComponents.Base {
 		floorSprite.texture = spriteSheet.textures[EnviromentBackgrounds.sprites.platform];
 		floorSprite.setParent(this);
 		floorSprite.anchor.set(0, 0);
-		floorSprite.zIndex = 11;
+		floorSprite.zIndex = 21;
 	}
 
 	private SpawnBackground(spriteSheet: PIXI.LoaderResource): void {
-		const treesCouns = Core.Utils.Number.RandomInteger(0, 5);
-		console.log(treesCouns);
+		const treesCount = Core.Utils.Number.RandomInteger(0, 6);
+		const backgroundCount = Core.Utils.Number.RandomInteger(0, 3);
+		const foregroundCount = Core.Utils.Number.RandomInteger(0, 3);
 
-		for (let i = 0; i < treesCouns; i++) {
+		// trees
+		for (let i = 0; i < treesCount; i++) {
 			const randomSprite = Core.Utils.Array.GetRandom(this._treesTexture)!;
 			const randomPosition = Core.Utils.Number.RandomInteger(0, Config.Main.PIXI.Game.platformWidth);
 			const tree = new PIXI.Sprite();
 			tree.texture = spriteSheet.textures![randomSprite];
-			tree.setParent(this.foregroundLayer);
+			tree.setParent(this.backgroundLayer); 
 			tree.anchor.set(0.5, 1);
 			tree.scale.set(0.5);
 			tree.position.set(randomPosition, 5);
+		}
+
+		// foreground
+		for (let i = 0; i < foregroundCount; i++) {
+			const randomSprite = Core.Utils.Array.GetRandom(this._foregroundTextures)!;
+			const randomPosition = Core.Utils.Number.RandomInteger(0, Config.Main.PIXI.Game.platformWidth);
+			const tree = new PIXI.Sprite();
+			tree.texture = spriteSheet.textures![randomSprite];
+			tree.setParent(this.foregroundLayer); 
+			tree.anchor.set(0.5, 1);
+			tree.scale.set(0.5);
+			tree.position.set(randomPosition, 5);
+		}
+
+		// fenses
+		for (let i = 0; i < backgroundCount; i++) {
+			const randomSprite = Enviroment.sprites.foreground.fense!;
+			const randomPosition = Core.Utils.Number.RandomInteger(0, Config.Main.PIXI.Game.platformWidth);
+			const fense = new PIXI.Sprite();
+			fense.texture = spriteSheet.textures![randomSprite];
+			fense.setParent(this.backgroundLayer); 
+			fense.anchor.set(0.5, 1);
+			fense.scale.set(0.5);
+			fense.angle = -5
+			fense.position.set(randomPosition, 20);
 		}
 	}
 }
