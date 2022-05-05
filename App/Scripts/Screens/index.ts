@@ -3,6 +3,7 @@
 import { BaseScreen } from "./BaseScreen";
 import { Manager } from "./Manager";
 import { ScreenEndGame } from "./ScreenEndGame/ScreenEndGame";
+import { ScreenLeaderboard } from "./ScreenLeaderboard/ScreenLeaderboard";
 import { ScreenStart } from "./ScreenStart/ScreenStart";
 
 export class Screens {
@@ -11,6 +12,7 @@ export class Screens {
 
 	public static List = {
 		Start: ScreenStart,
-		EndGame: ScreenEndGame
+		EndGame: ScreenEndGame,
+		Leaderboard: ScreenLeaderboard
 	}
 }

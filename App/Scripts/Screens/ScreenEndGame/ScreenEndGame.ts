@@ -14,11 +14,13 @@ export class ScreenEndGame extends BaseScreen {
 
 	public scoreCoinsLabel?: PIXI.Text;
 	public scoreDistanceLabel?: PIXI.Text;
+	public scoreTotalLabel?: PIXI.Text;
 	public recordOverlay?: PIXI.Sprite;
 	public recordContainer?: PIXI.Container;
 
 	private _scoreCoins: number = 0;
 	private _scoreDistance: number = 0;
+	private _totalScore: number = 0;
 	private _isRecord: boolean = false;
 
 	private _angleStarStep: number = 115;
@@ -33,13 +35,19 @@ export class ScreenEndGame extends BaseScreen {
 		fontFamily: "Krabuler"
 	}
 
-	public SetStats(coins: number = 0, distance: number = 0, isRecord: boolean = false): void {
+	public SetStats(
+		totalScore: number = 0, 
+		coins: number = 0, 
+		distance: number = 0, 
+		isRecord: boolean = false
+	): void {
 		this._scoreCoins = coins;
 		this._scoreDistance = distance;
 		this._isRecord = isRecord;
 
 		if (this.scoreCoinsLabel) this.scoreCoinsLabel.text = `${coins}`;
 		if (this.scoreDistanceLabel) this.scoreDistanceLabel.text = `${distance} M`;
+		if (this.scoreTotalLabel) this.scoreTotalLabel.text = `${totalScore}`;
 		if (this.recordContainer) this.SetRecordVisability(isRecord);
 	}
 
@@ -73,7 +81,7 @@ export class ScreenEndGame extends BaseScreen {
 
 	private SetRecordVisability(state: boolean): void {
 		if (!this.recordContainer) return;
-		this.recordContainer.renderable = state;
+		this.recordContainer.visible = state;
 	}
 
 	private CreateBackground(spriteSheet: PIXI.LoaderResource): void {
@@ -122,7 +130,7 @@ export class ScreenEndGame extends BaseScreen {
 
 		this.CreateButtonClose(spriteSheet);
 		this.CreateHeader(spriteSheet);
-		this.CreateUnkownScore(spriteSheet);
+		this.CreateTotalScore(spriteSheet);
 		this.CreateCoinsScore(spriteSheet);
 		this.CreateDistanceScore(spriteSheet);
 		this.CreateStars();
@@ -148,7 +156,7 @@ export class ScreenEndGame extends BaseScreen {
 		this.titleLabel = title;
 	}
 
-	private CreateUnkownScore(spriteSheet: PIXI.LoaderResource): void {
+	private CreateTotalScore(spriteSheet: PIXI.LoaderResource): void {
 		const scoreLabel = new PIXI.Text("75");
 		scoreLabel.setParent(this);
 		scoreLabel.pivot.set(0.5);
@@ -157,6 +165,8 @@ export class ScreenEndGame extends BaseScreen {
 		scoreLabel.style.fill = "#06eb62", 
 		scoreLabel.style = {...scoreLabel.style, ...this._labelsStyle};
 		scoreLabel.position.set(-scoreLabel.width / 2, -this.background.height / 2 + 65);
+
+		this.scoreTotalLabel = scoreLabel;
 	}
 
 	private CreateCoinsScore(spriteSheet: PIXI.LoaderResource): void {

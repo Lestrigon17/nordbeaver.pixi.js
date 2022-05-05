@@ -46,14 +46,14 @@ export class ScreenStart extends BaseScreen {
 	private HandleButtonLeaderboard(ev: Types.Core.PIXIComponents.EEventType): void {
 		if (ev !== Core.PIXIComponents.ButtonSprite.EEventType.PointerUp) return;
 
-		type TScreen = Types.Screens.List.EndGame;
+		type TScreen = Types.Screens.List.Leaderboard;
 		const screenData = {
 			prevScreen: this
 		}
-		Screens.Manager.OpenScreen<TScreen>(Screens.List.EndGame, screenData)
-			.then(screen => {
-				screen.SetStats(10, 25, true);
-			})
+		Screens.Manager.OpenScreen<TScreen>(Screens.List.Leaderboard, screenData)
+			// .then(screen => {
+			// 	screen.SetStats(10, 25, true);
+			// })
 	}
 
 	private CreateBackground(spriteSheet: PIXI.LoaderResource): void {
@@ -188,6 +188,8 @@ export class ScreenStart extends BaseScreen {
 
 	private HandleButtonStart(ev: Types.Core.PIXIComponents.EEventType): void {
 		if (ev !== Core.PIXIComponents.Button.EEventType.PointerUp) return;
-		// Game.Manager.LoadGame();
+		if (Game.Manager.currentSession) {
+			Game.Manager.currentSession.Start();
+		}
 	}
 }

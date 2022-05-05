@@ -4,13 +4,17 @@ import { BaseScreen } from "./BaseScreen";
 
 const { AppController } = Core.PIXIComponents
 type TOpenScreenData = {
-	prevScreen?: BaseScreen;
+	prevScreen?: Nullable<BaseScreen>;
 }
 
 export class Manager {
 	private static _screenCache: Map<typeof BaseScreen, BaseScreen> = new Map();
 	private static _activeScreen?: BaseScreen;
 	private static _isBusy: boolean = false;
+
+	public static GetFromCache(screen: typeof BaseScreen): Nullable<BaseScreen> {
+		return this._screenCache.get(screen);
+	}
 
 	public static OpenScreen<T extends BaseScreen>(
 		screen: typeof BaseScreen, 

@@ -9,7 +9,10 @@ export class Manager {
 		const currentScene = Scenes.Manager.currentScene;
 		const session = new Session(currentScene);
 		this.currentSession = session;
+	}
 
-		
+	public static RecreateSession(): void {
+		if(this.currentSession) this.currentSession.Destroy();
+		this.LoadGame();
 	}
 }

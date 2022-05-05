@@ -7,7 +7,7 @@ import { Screens } from '../../Screens';
 import { BaseScene } from "../BaseScene";
 
 const { Application } = Config.Main.PIXI;
-const { Characters, Enviroment } = Config.Sprites.Sheets;
+const { Characters, Enviroment, EnviromentBackgrounds } = Config.Sprites.Sheets;
 
 export class SceneGame extends BaseScene {
 	private _logo?: PIXI.Sprite;
@@ -23,32 +23,32 @@ export class SceneGame extends BaseScene {
 	}
 
 	protected async OnLoad(): Promise<void> {
-		const spriteSheet = await Core.ResourceLoader.Get(Enviroment.path);
-		if (!spriteSheet.textures) return;
+		this.sortableChildren = true;
+
+		const spriteSheetEnv = await Core.ResourceLoader.Get(Enviroment.path);
+		if (!spriteSheetEnv.textures) return;
 
 		const background = new PIXI.Sprite();
-		background.texture = spriteSheet.textures[Enviroment.sprites.backlayer.gradient];
+		background.texture = spriteSheetEnv.textures[Enviroment.sprites.backlayer.gradient];
 		background.setParent(this);
 		background.width = Application.width;
 		background.height = Application.height;
+		background.zIndex = -10;
 
 		const sun = new PIXI.Sprite();
-		sun.texture = spriteSheet.textures[Enviroment.sprites.backlayer.sun];
+		sun.texture = spriteSheetEnv.textures[Enviroment.sprites.backlayer.sun];
 		sun.setParent(this);
 		sun.position.set(300, 200);
 		sun.anchor.set(0.5);
-		sun.scale.set(0.7)
+		sun.scale.set(0.7);
+		sun.zIndex = -1;
 	}
 
 	protected OnStart(): void {
-		// this.UpdateLoop(0);
-
-		// Screens.Manager.OpenScreen( Screens.List.Start );
 		Game.Manager.LoadGame(); 
 		Screens.Manager.OpenScreen( Screens.List.Start );
 	}
 
 	private UpdateLoop(dt: number): void {
-		// requestAnimationFrame(this.UpdateLoop.bind(this));
 	}
 }

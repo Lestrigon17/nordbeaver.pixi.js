@@ -5,6 +5,7 @@ import { Logger } from '../Logger';
 
 const { Button } = Core.PIXIComponents;
 const { Application } = Config.Main.PIXI; 
+const { UI: UISprites } = Config.Sprites.Sheets;
 
 type TButton = Nullable<Types.Core.PIXIComponents.Button>;
 enum EScreenState {
@@ -34,7 +35,7 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		Logger.Log("Screen opened");
 
 		this.EnableButtonClose();
-		this.renderable = true;
+		this.visible = true;
 		this.position.y = Config.Main.PIXI.Application.height / 2;
 		this.SetPositionState(EScreenState.Opened);
 		return this.OnOpen();
@@ -46,11 +47,25 @@ export class BaseScreen extends Core.PIXIComponents.Base {
 		this.DisableButtonClose();
 		this.OnClose();
 
-		this.renderable = false;
+		this.visible = false;
 		this.SetPositionState(EScreenState.Closed);
 	}
 
 	public FirstInitialize(): Promise<void> {
+		const backlayer = new PIXI.Sprite();
+		backlayer.setParent(this);
+		backlayer.anchor.set(0.5);
+		backlayer.width = Application.width;
+		backlayer.height = Application.height;
+		backlayer.zIndex = -999;
+		backlayer.interactive = true;
+		
+		Core.ResourceLoader.Get(UISprites.path)
+			.then((spriteSheet) => {
+				if (!spriteSheet.textures) return;
+				backlayer.texture = spriteSheet.textures[UISprites.sprites.blackPixel];
+			});
+
 		return this.OnFirstInitialize()
 	}
 	

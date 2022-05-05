@@ -17,7 +17,7 @@ export class Base extends Core.PIXIComponents.Base {
 	public sprite!: PIXI.Sprite;
 	
 	public size: PIXI.ISize = {
-		width: 75,
+		width: 90,
 		height: 75
 	}
 
