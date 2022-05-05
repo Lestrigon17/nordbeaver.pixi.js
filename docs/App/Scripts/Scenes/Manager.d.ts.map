@@ -1,0 +1,1 @@
+{"version":3,"file":"Manager.d.ts","sourceRoot":"","sources":["../../../../App/Scripts/Scenes/Manager.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,aAAa,CAAC;AAExC,qBAAa,OAAO;IACnB,WAAkB,YAAY,IAAI,SAAS,CAE1C;IAED,OAAO,CAAC,MAAM,CAAC,aAAa,CAAY;WAE1B,SAAS,CAAC,KAAK,EAAE,OAAO,SAAS,GAAG,IAAI;CAetD"}

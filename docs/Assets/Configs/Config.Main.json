@@ -1,0 +1,12 @@
+{
+	"PIXI": {
+		"Application": {
+			"width": 1280,
+			"height": 640
+		},
+		"Game": {
+			"platformWidth": 1280,
+			"mountainWidth": 1280
+		}
+	}
+}

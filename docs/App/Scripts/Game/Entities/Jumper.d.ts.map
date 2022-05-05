@@ -1,0 +1,1 @@
+{"version":3,"file":"Jumper.d.ts","sourceRoot":"","sources":["../../../../../App/Scripts/Game/Entities/Jumper.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,MAAM,EAAE,MAAM,WAAW,CAAC;AACnC,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAK1C,qBAAa,MAAO,SAAQ,UAAU;IACrC,SAAS,CAAC,MAAM,IAAI,IAAI;IAYjB,eAAe,CAAC,MAAM,EAAE,MAAM,GAAG,IAAI;CAK5C"}

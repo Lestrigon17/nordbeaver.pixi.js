@@ -1,0 +1,159 @@
+{
+	"Sheets": {
+		"Characters": {
+			"path": "./Assets/Images/Characters.json",
+			"sprites": {
+				"mi_bunny_idle_03": "mi_bunny_idle_03.png"
+			}
+		},
+		"UI": {
+			"path": "./Assets/Images/UI.json",
+			"sprites": {
+				"buttonPlay": {
+					"active": "play_button_active.png",
+					"hover": "play_button_hover.png",
+					"press": "play_button_press.png"
+				},
+				"buttonLeaderboard": {
+					"active": "leadboard_button_active.png",
+					"hover": "leadboard_button_hover.png",
+					"press": "leadboard_button_press.png"
+				},
+				"buttonMILogin": {
+					"active": "login_button_active.png",
+					"hover": "login_button_hover.png",
+					"press": "login_button_press.png"
+				},
+				"buttonOk": {
+					"active": "ok_button_active.png",
+					"hover": "ok_button_hover.png",
+					"press": "ok_button_press.png"
+				},
+				"buttonArrow": {
+					"active": "arrow_btn_active.png",
+					"hover": "arrow_btn_hover.png",
+					"press": "arrow_btn_press.png"
+				},
+				"GameUI": {
+					"coinScoreBackground": "coin_score_plate.png",
+					"coinScoreIcon": "collect_coin_icon.png",
+					"buttonFullscreen": {
+						"active": "btn_fullscreen_active.png",
+						"hover": "btn_fullscreen_hover.png",
+						"press": "btn_fullscreen_press.png"
+					},
+					"buttonPause": {
+						"active": "btn_pause_active.png",
+						"hover": "btn_pause_hover.png",
+						"press": "btn_pause_press.png"
+					},
+					"buttonMute": {
+						"muted": {
+							"active": "btn_sound_0_active.png",
+							"hover": "btn_sound_0_hover.png",
+							"press": "btn_sound_0_press.png"
+						},
+						"active": {
+							"active": "btn_sound_1_active.png",
+							"hover": "btn_sound_1_hover.png",
+							"press": "btn_sound_1_press.png"
+						}
+					}
+				},
+				"screenTitleBackground": "header_info_plate.png",
+				"userNameBar": "user_name_bar.png",
+				"scoreCoinsIcon": "collect_coin_icon.png",
+				"ScoreDistanceIcon": "collect_distance_icon.png",
+				"star": "star.png",
+				"blackPixel": "black_pixel.png",
+				"leaderboardBackgrounds": {
+					"top": {
+						"1": "place_1.png",
+						"2": "place_2.png",
+						"3": "place_3.png"
+					},
+					"topScore": "highleader_scores_plate.png",
+					"middle": "midleader_name_plate.png",
+					"middleScore": "midleader_scores_plate.png"
+				}
+			}
+		},
+		"Enviroment": {
+			"path": "./Assets/Images/Environment.json",
+			"sprites": {
+				"airship": "airship.png",
+				"balloons": {
+					"blue": "balloon_blue.png",
+					"red": "balloon_red.png"
+				},
+				"backlayer": {
+					"gradient": "bg_gradient.png",
+					"sun": "bg_sun.png"
+				},
+				"checkPoint": "check_point.png",
+				"clouds": {
+					"1": "cloud_1.png",
+					"2": "cloud_2.png"
+				},
+				"coin": "coin.png",
+				"foreground": {
+					"directionPlate": "element_1.png",
+					"pillar": "element_2.png",
+					"fense": "fore_fence.png"
+				},
+				"trees": {
+					"1": "tree_1.png",
+					"2": "tree_2.png"
+				},
+				"stopper": {
+					"idle": "stopper_idle.png",
+					"crush": "stopper_crush.png"
+				},
+				"jumper": "jumper.png",
+				"building": {
+					"walls": {
+						"1": "tail_wall_1.png",
+						"2": "tail_wall_7.png"
+					},
+					"windows": {
+						"1": "tail_wall_2.png",
+						"2": "tail_wall_3.png"
+					},
+					"baseToWall": "tail_wall_4.png",
+					"basements": {
+						"1": "tail_wall_5.png",
+						"2": "tail_wall_6.png"
+					},
+					"roofs": {
+						"1": "tail_roof_1.png",
+						"2": "tail_roof_2.png"
+					},
+					"sides": {
+						"left": "tail_added_side_1.png",
+						"right": "tail_side_obj_1.png"
+					}
+				}
+			}
+		},
+		"EnviromentBackgrounds": {
+			"path": "./Assets/Images/EnvironmentBackgrounds.json",
+			"sprites": {
+				"rocks": "back_rocks.png",
+				"preloader": "bg_preloader.png",
+				"platform": "floor.png"
+			}
+		},
+		"UIBackgrounds_1": {
+			"path": "./Assets/Images/UIBackgrounds_1.json",
+			"sprites": {
+				"background": "info_plate_big.png"
+			}
+		},
+		"UIBackgrounds_0": {
+			"path": "./Assets/Images/UIBackgrounds_0.json",
+			"sprites": {
+				"rays": "rays.png"
+			}
+		}
+	}
+}

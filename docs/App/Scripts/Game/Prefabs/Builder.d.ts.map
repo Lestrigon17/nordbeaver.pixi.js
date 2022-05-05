@@ -1,0 +1,1 @@
+{"version":3,"file":"Builder.d.ts","sourceRoot":"","sources":["../../../../../App/Scripts/Game/Prefabs/Builder.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,IAAI,MAAM,SAAS,CAAC;AAkBhC,qBAAa,OAAO;IACnB,OAAO,CAAC,MAAM,CAAC,UAAU,CAAsC;WAEjD,cAAc,IAAI,IAAI,CAAC,SAAS;IAgB9C,OAAO,CAAC,MAAM,CAAC,YAAY;IAQ3B,OAAO,CAAC,MAAM,CAAC,gBAAgB;CA2C/B"}

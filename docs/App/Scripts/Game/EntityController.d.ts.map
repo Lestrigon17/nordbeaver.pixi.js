@@ -1,0 +1,1 @@
+{"version":3,"file":"EntityController.d.ts","sourceRoot":"","sources":["../../../../App/Scripts/Game/EntityController.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAE,MAAM,uBAAuB,CAAC;AAGnD,qBAAa,gBAAgB;IAC5B,OAAO,CAAC,MAAM,CAAC,YAAY,CAA8B;WAE3C,IAAI,IAAI,IAAI;WAIZ,UAAU,CAAC,MAAM,EAAE,UAAU,GAAG,IAAI;WAYpC,QAAQ,IAAI,IAAI;CAgB9B"}
