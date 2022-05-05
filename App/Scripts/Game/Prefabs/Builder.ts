@@ -17,7 +17,7 @@ const directions: TDirections = {
 }
 
 export class Builder {
-	private static _startPart: Array<typeof Base> = [Start, BaseToWall, Walls, Windows];
+	private static _startPart: Array<typeof Base> = [Start, Walls];
 
 	public static CreateBuilding(): PIXI.Container {
 		const parent = new PIXI.Container();

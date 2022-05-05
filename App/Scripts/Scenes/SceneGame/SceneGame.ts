@@ -5,6 +5,7 @@ import { Core } from '../../Core';
 import { Game } from '../../Game';
 import { Screens } from '../../Screens';
 import { BaseScene } from "../BaseScene";
+import { GameUI } from './GameUI';
 
 const { Application } = Config.Main.PIXI;
 const { Characters, Enviroment, EnviromentBackgrounds } = Config.Sprites.Sheets;
@@ -42,11 +43,16 @@ export class SceneGame extends BaseScene {
 		sun.anchor.set(0.5);
 		sun.scale.set(0.7);
 		sun.zIndex = -1;
+
+		const gameUI = new GameUI();
+		gameUI.setParent(this);
+		gameUI.zIndex = 999;
 	}
 
 	protected OnStart(): void {
 		Game.Manager.LoadGame(); 
 		Screens.Manager.OpenScreen( Screens.List.Start );
+		Game.EntityController.Init();
 	}
 
 	private UpdateLoop(dt: number): void {

@@ -39,14 +39,14 @@ export namespace Utils {
 	}
 
 	export class PIXI {
-		public static HitRectangle(
+		public static IsCollideByRectangle(
 			target: PIXI.Container, 
 			attacker: PIXI.Container
 		): boolean {
 			let isCollide: boolean = false;
 			const distance: PIXI.IPointData = this.GetDistance(target, attacker);
 			const targetHalfSize: PIXI.ISize = this.GetHalfSize(target);
-			const attackerHalfSize: PIXI.ISize = this.GetHalfSize(target);
+			const attackerHalfSize: PIXI.ISize = this.GetHalfSize(attacker);
 			const combinedHalfSize: PIXI.ISize = {
 				width: targetHalfSize.width + attackerHalfSize.width,
 				height: targetHalfSize.height + attackerHalfSize.height
@@ -64,9 +64,11 @@ export namespace Utils {
 			target: PIXI.Container, 
 			attacker: PIXI.Container
 		): IPointData {
+			const globalPositionTarget = target.getGlobalPosition();
+			const globalPositionAttacker = attacker.getGlobalPosition(); 
 			return {
-				x: Math.abs(target.x - attacker.x),
-				y: Math.abs(target.y - attacker.y)
+				x: Math.abs(globalPositionTarget.x - globalPositionAttacker.x),
+				y: Math.abs(globalPositionTarget.y - globalPositionAttacker.y)
 			}
 		}
 

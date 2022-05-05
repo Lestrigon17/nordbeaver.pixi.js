@@ -36,6 +36,7 @@ export class Manager {
 		} else {
 			screenInstance = new screen();
 			screenInstance.setParent(AppController.persistNode);
+			this._screenCache.set(screen, screenInstance);
 			
 			return screenInstance.FirstInitialize()
 				.then(() => this.OnScreenInitialized(screenInstance, data))

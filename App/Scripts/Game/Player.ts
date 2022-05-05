@@ -12,11 +12,12 @@ export enum EPlayerState {
 }
 
 export class Player extends Core.PIXIComponents.Base {
+	public static EPlayerState = EPlayerState;
 	// Score
 	public scoreDistance: number = 0;
 	public scoreCoins: number = 0;
-
 	public playerSprite!: PIXI.Sprite;
+
 	//  Speed
 	public currentSpeed: number = 0;
 	public targetSpeed = 10;
@@ -24,14 +25,15 @@ export class Player extends Core.PIXIComponents.Base {
 
 	public lastSpeedUp: number = 0;
 	public speedUpTime: number = 5000;
+
 	// Jump
 	public currentJumpHeight: number = 0;
 	public targetJumpHeight: number = 0;
 	public maxJumpHeight: number = 250;
 
-	public jumpHeightSpeed: number = 0.085;
-	public fallHeightSpeedStart: number = 0.01;
-	public jumpTime: number = 500; // milliseconds
+	public jumpHeightSpeed: number = 0.03;
+	public fallHeightSpeedStart: number = 0.001;
+	public jumpTime: number = 1000; // milliseconds
 
 	public get state(): EPlayerState {
 		return this._state;
@@ -45,15 +47,15 @@ export class Player extends Core.PIXIComponents.Base {
 	private _fallTime: number = 0;
 	private _scoreDistanceLabel?: PIXI.Text;
 
-	private _OnKeyDownBounded?: (key: DocumentEventMap["keydown"]) => void;
+	private _OnKeyUpBounded?: (key: DocumentEventMap["keyup"]) => void;
 
 	public SmallJump(): void {
-		this.AddTargetJumpHeight(175);
+		this.AddTargetJumpHeight(150);
 		this.Jump();
 	}
 
 	public BigJump(): void {
-		this.AddTargetJumpHeight(250);
+		this.AddTargetJumpHeight(225);
 		this.Jump();
 	}
 
@@ -62,6 +64,7 @@ export class Player extends Core.PIXIComponents.Base {
 		this.SetTargetJumpHeight(0);
 		this._fallTime = 0;
 		this._currentLerpJump = 0.5;
+		this._state = EPlayerState.InFall;
 	}
 
 	private Jump(): void {
@@ -99,20 +102,26 @@ export class Player extends Core.PIXIComponents.Base {
 		this.lastSpeedUp = Date.now() + this.speedUpTime;
 	}
 
+	public Kill(): void {
+		this.currentSpeed = 0;
+		this.targetSpeed = 0;
+		this.angle = 90;
+	}
+
 	protected OnLoad(): void {
 		this.playerSprite = new PIXI.Sprite();
 		this.playerSprite.setParent(this);
 		this.LoadView();
 
-		this._OnKeyDownBounded = (key: DocumentEventMap["keydown"]) => {
+		this._OnKeyUpBounded = (key: DocumentEventMap["keyup"]) => {
 			if (key.code !== "Space") return;
 			this.OnJumpClick()
 		};
-		document.addEventListener("keydown", this._OnKeyDownBounded!);
+		document.addEventListener("keyup", this._OnKeyUpBounded!);
 	}
 
 	protected OnDestroy(): void {
-		document.removeEventListener("keydown", this._OnKeyDownBounded!);
+		document.removeEventListener("keyup", this._OnKeyUpBounded!);
 	}
 
 	protected OnUpdate(deltaTime: number): void {
@@ -123,13 +132,13 @@ export class Player extends Core.PIXIComponents.Base {
 			this.targetSpeed = 0;
 		}
 
-		this.scoreDistance += 0.1 / this.maxSpeed * this.currentSpeed;
+		this.scoreDistance += 0.02 / this.maxSpeed * this.currentSpeed;
 
 		if (this._scoreDistanceLabel) {
 			this._scoreDistanceLabel.text = `${Math.floor(this.scoreDistance)}m`;
 		}
 
-		this.currentSpeed = Lerp( this.currentSpeed, this.targetSpeed, 0.015 );
+		this.currentSpeed = Lerp( this.currentSpeed, this.targetSpeed, 0.005 );
 
 		// Jumps
 		if (this._fallTime < Date.now() && this._state === EPlayerState.Jump) {
@@ -137,6 +146,14 @@ export class Player extends Core.PIXIComponents.Base {
 			this.SetTargetJumpHeight(0);
 			this._currentLerpJump = this.fallHeightSpeedStart;
 		}
+		
+		if (this._state === EPlayerState.Jump) {
+			this._currentLerpJump = Lerp(
+				this._currentLerpJump,
+				0.0001,
+				0.0001
+			)
+		} 
 
 		if (this._state !== EPlayerState.OnGround) {
 			this.currentJumpHeight = Lerp(
@@ -152,17 +169,15 @@ export class Player extends Core.PIXIComponents.Base {
 		}
 		
 		if (this._state === EPlayerState.InFall) {
-			const onGround = this.position.y >= this._defaultPosition.y - 1;
+			const onGround = this.position.y >= this._defaultPosition.y - 2;
 			if (onGround) {
 				this._state = EPlayerState.OnGround;
 			}
-		}
 
-		if (this._state === EPlayerState.InFall) {
 			this._currentLerpJump = Lerp(
 				this._currentLerpJump,
 				3,
-				0.0008
+				0.0001
 			)
 		}
 	}

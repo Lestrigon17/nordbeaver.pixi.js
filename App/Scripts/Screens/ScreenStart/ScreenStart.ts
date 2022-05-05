@@ -13,6 +13,13 @@ export class ScreenStart extends BaseScreen {
 	public titleLabel?: PIXI.Text;
 	public buttonLeaderboard?: Types.Core.PIXIComponents.ButtonSprite;
 
+	protected OnOpen(): Promise<void> {
+		if (Game.Manager.currentSession) {
+			Game.Manager.RecreateSession();
+		}
+		return Promise.resolve();
+	}
+
 	protected OnLoadScreen(): void {
 		this.sortableChildren = true;
 

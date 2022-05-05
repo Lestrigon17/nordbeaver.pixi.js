@@ -4,22 +4,22 @@ import { Player } from "../Player";
 import { BaseEntity } from "./BaseEntity";
 
 const { Enviroment} = Config.Sprites.Sheets;
-const { coin: coinSprite } = Enviroment.sprites;
+const { balloons } = Enviroment.sprites;
 
-export class Coin extends BaseEntity {	
+export class Balloon extends BaseEntity {	
 	protected OnLoad(): void {
 		Core.ResourceLoader.Get(Enviroment.path)
 			.then((spriteSheet) => {
 				if (!spriteSheet.textures) return super.OnLoad();
 
-				this.spriteTexture = spriteSheet.textures[coinSprite];
+				this.spriteTexture = spriteSheet.textures[balloons.red];
 				super.OnLoad();
 			});
 	}
 
 	public OnCollidePlayer(player: Player): void {
+		player.SmallJump();
+		player.SpeedUp();
 		this.destroy();
-		player.scoreCoins += 1;
-		Core.SoundPlayer.PlaySound("AddCoins");
 	}
 }

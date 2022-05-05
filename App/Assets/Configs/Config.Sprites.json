@@ -34,6 +34,32 @@
 					"hover": "arrow_btn_hover.png",
 					"press": "arrow_btn_press.png"
 				},
+				"GameUI": {
+					"coinScoreBackground": "coin_score_plate.png",
+					"coinScoreIcon": "collect_coin_icon.png",
+					"buttonFullscreen": {
+						"active": "btn_fullscreen_active.png",
+						"hover": "btn_fullscreen_hover.png",
+						"press": "btn_fullscreen_press.png"
+					},
+					"buttonPause": {
+						"active": "btn_pause_active.png",
+						"hover": "btn_pause_hover.png",
+						"press": "btn_pause_press.png"
+					},
+					"buttonMute": {
+						"muted": {
+							"active": "btn_sound_0_active.png",
+							"hover": "btn_sound_0_hover.png",
+							"press": "btn_sound_0_press.png"
+						},
+						"active": {
+							"active": "btn_sound_1_active.png",
+							"hover": "btn_sound_1_hover.png",
+							"press": "btn_sound_1_press.png"
+						}
+					}
+				},
 				"screenTitleBackground": "header_info_plate.png",
 				"userNameBar": "user_name_bar.png",
 				"scoreCoinsIcon": "collect_coin_icon.png",
@@ -58,7 +84,7 @@
 				"airship": "airship.png",
 				"balloons": {
 					"blue": "balloon_blue.png",
-					"red": "ballon_red.png"
+					"red": "balloon_red.png"
 				},
 				"backlayer": {
 					"gradient": "bg_gradient.png",

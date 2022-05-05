@@ -1,15 +1,21 @@
 import * as PIXI from 'pixi.js'
 import { Config } from '../Configs';
 import { Core } from '../Core';
+import { Utils } from '../Core/Utils';
 import { Screens } from '../Screens';
 import { Player } from './Player';
 import { Platform } from './Prefabs/Platform';
 
-const {Application: AppConfig} = Config.Main.PIXI
-const { EnviromentBackgrounds } = Config.Sprites.Sheets;
+const { Application: AppConfig } = Config.Main.PIXI
+const { EnviromentBackgrounds, Enviroment } = Config.Sprites.Sheets;
+const { Lerp } = Core.Utils.Number;
 
 // TODO: Ограничить максималку по x у platformSpeed
 export class Session {
+	public get player(): Nullable<Player> {
+		return this._player;
+	}
+
 	private _platformHeightPercent: number = 20;
 	private _mountainsContainer!: PIXI.Container;
 	private _masterContainer!: PIXI.Container;
@@ -18,7 +24,9 @@ export class Session {
 	private _platformStorage: Platform[] = [];
 	private _mountainsStorage: PIXI.Sprite[] = [];
 	private _mouseHandler?: Types.Core.PIXIComponents.Button;
-	private _maxSpeed: number = 20;
+	private _maxSpeed: number = 7;
+
+
 	private _isStared: boolean = false;
 	private _player!: Player;
 	private _isDestroyed: boolean = false;
@@ -30,7 +38,7 @@ export class Session {
 
 		const masterContainer = new PIXI.Container();
 		masterContainer.setParent(parent);
-		masterContainer.angle = 5;
+		masterContainer.angle = 0;
 		this._masterContainer = masterContainer;
 
 		const speedContainer = new PIXI.Container();
@@ -94,7 +102,12 @@ export class Session {
 	private OnUpdate(): void {
 		if (this._isDestroyed) return;
 		requestAnimationFrame(this.OnUpdate.bind(this));
+
+		const angle = Lerp(this._masterContainer.angle, 5 / this._maxSpeed * this._platformSpeed, 0.01);
+		this._masterContainer.angle = angle;
+
 		if (!this._isStared) return;
+		
 		this.CheckPlatforms();
 		this.CheckMountains();
 		this.CheckPlayerJump();
@@ -125,7 +138,6 @@ export class Session {
 			}
 		}
 
-		this._masterContainer.angle = 5 / this._maxSpeed * this._platformSpeed;
 		this._speedContainer.position.x -= this._platformSpeed;
 		this._mountainsContainer.position.x -= this._platformSpeed / this._maxSpeed;
 		this._speedContainer.position.y = 0;
